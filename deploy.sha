@@ -1,0 +1,31 @@
+
+
+# create resource group and set defaults
+az group create --name stickerApp-RG --location westus
+az configure --defaults group=stickerApp-RG location=westus
+
+# create a linux machine
+az appservice plan create --name cdiasBuild-Plan --is-linux --sku S1
+
+# create the site
+az appservice web create --name stickerapp-cdias --plan cdiasBuild-Plan
+
+# the port the app listens on
+az appservice web config appsettings update --name stickerapp-cdias --settings PORT=3000 
+
+# tell the site to use the image
+az appservice web config container update --name stickerapp-cdias --docker-custom-image-name chrisdias/stickerapp:latest
+
+# browse to the site
+az appservice web browse --name stickerapp-chrisdias 
+
+# create database and get the connection string
+az documentdb create --kind MongoDB --name stickerapp-mongodb
+az documentdb list-connection-strings --name stickerapp-mongodb  
+az documentdb list-connection-strings --resource-group earDemoRG --name cdiasmongodb
+
+# set the connection string environment variable
+az appservice web config appsettings update --name stickerapp-cdias --settings MONGODB_URL= 
+
+# cleanup
+az group delete --name cdiasBuild-RG
