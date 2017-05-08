@@ -25,6 +25,7 @@ kubectl proxy
 
 # run a debug version but do not expose
 # --env="MONGODB_URL=connection string..."
+# do i need to expose port 3000 here??
 kubectl run stickerapp-debug --image chrisdias/stickerapp:latest -- node --debug=5858 server/index.js 
 # get name of pod (container) in Kubernetes
 kubectl get pods
