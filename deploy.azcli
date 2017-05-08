@@ -22,7 +22,6 @@ az appservice web browse --name stickerapp-chrisdias
 # create database and get the connection string
 az documentdb create --kind MongoDB --name stickerapp-mongodb
 az documentdb list-connection-strings --name stickerapp-mongodb  
-az documentdb list-connection-strings --resource-group earDemoRG --name cdiasmongodb
 
 # set the connection string environment variable
 az appservice web config appsettings update --name stickerapp-cdias --settings MONGODB_URL= 
