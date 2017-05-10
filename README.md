@@ -35,6 +35,21 @@ VS Code - Conquring the Cloud with an editor and a CLI
 
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) integrates [ESLint](http://eslint.org/) (a pluggable linting utility for JavaScript and JavaScript React (JSX) into VS Code.
 
+### NoSQL MongoDB
+
+* [MongoDB Extension](https://code.visualstudio.com/extensions/vscode-mongodb-0.0.1.vsix) **PREVIEW** This extension is in very early preview and leverages proposed APIs in VS Code which have not been released yet. As a result, this extension only runs using Insider builds and you must enable it from the command line.  To install:
+
+  * Install the extension 
+  
+  ``` bash
+  code-insiders --install-extension vscode-mongodb-0.0.1.vsix
+  ```
+  * Load code-insiders enabling extensions that use a proposed API
+  
+  ``` bash
+  code-insiders --enable-proposed-api sandy081.vscode-mongodb
+  ```
+
 ### Micro-Services
 
 * The [Docker Tools for VS Code](https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker) make it easy to develop and deploy containerized micro-service based applications using Docker containers. 

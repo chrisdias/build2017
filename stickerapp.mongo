@@ -1,8 +1,0 @@
-
-
-db.stickers.insertOne({"id":"1"})
-db.stickers.insertOne({
-    "id":"2"
-})
-
-db.stickers.find()
