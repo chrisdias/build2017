@@ -9,17 +9,18 @@ az appservice plan create --name stickerApp-Plan --is-linux --sku S1
 
 # create the site
 az webapp create --name stickerapp-cdias --plan stickerApp-Plan
-az webapp config appsettings set --settings PORT=3000 --name stickerapp-cdias
-az webapp config container set --name stickerapp-cdias --docker-custom-image-name chrisdias/stickerapp:latest 
-az webapp browse --name stickerapp-cdias
 
 # create database and get the connection string
 az documentdb create --kind MongoDB --name stickerapp-mongodb
 az documentdb list-connection-strings --name stickerapp-mongodb  
 
-# set the connection string environment variable
-# mongodb://stickerapp-mongodb:HilFiU22yQ3Ez4TSLkDzFzac1ceCorsSMjSyBdjzM4To0AcAaC6AIUen4DVRQsK1bIoNFFIUN4rMb6GMIcPDbw==@stickerapp-mongodb.documents.azure.com:10255/?ssl=true
-az webapp config appsettings set --name stickerapp-cdias --settings MONGODB_URL=mongodb://stickerapp-mongodb:HilFiU22yQ3Ez4TSLkDzFzac1ceCorsSMjSyBdjzM4To0AcAaC6AIUen4DVRQsK1bIoNFFIUN4rMb6GMIcPDbw==@stickerapp-mongodb.documents.azure.com:10255/?ssl=true
+# configure settings
+az webapp config appsettings set --name stickerapp-cdias --settings PORT=3000 MONGODB_URL=mongodb://stickerapp-mongodb:HilFiU22yQ3Ez4TSLkDzFzac1ceCorsSMjSyBdjzM4To0AcAaC6AIUen4DVRQsK1bIoNFFIUN4rMb6GMIcPDbw==@stickerapp-mongodb.documents.azure.com:10255/?ssl=true
+# deploy the container
+az webapp config container set --name stickerapp-cdias --docker-custom-image-name chrisdias/stickerapp:latest 
+
+# view running site
+az webapp browse --name stickerapp-cdias
 
 # cleanup
 az webapp delete --name stickerApp-cdias 
