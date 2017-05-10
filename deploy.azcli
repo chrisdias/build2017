@@ -23,6 +23,6 @@ az webapp config container set --name stickerapp-cdias --docker-custom-image-nam
 az webapp browse --name stickerapp-cdias
 
 # cleanup
-az webapp delete --name stickerApp-cdias 
-az appservice plan delete --name stickerApp-Plan
+az webapp delete --name stickerApp-cdias --resource-group stickerApp-RG
+az appservice plan delete --name stickerApp-Plan --resource-group stickerApp-RG --yes
 az group delete --name stickerApp-RG
